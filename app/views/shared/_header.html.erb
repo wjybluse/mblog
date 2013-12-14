@@ -1,0 +1,39 @@
+ <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">Micro Blog</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+         
+          <ul class="right">
+           
+            <li><a href="#">About</a></li>
+           <li><%= link_to "Users", users_path %></li>
+            <li class="has-dropdown">
+              <a href="#">Account</a>
+              <ul class="dropdown">
+               <% if signed_in? %>
+                  <li><%= link_to "Profiles", current_user %></li>
+                  <li><%= link_to "Setting", edit_user_path(current_user) %></li>
+                <% else %>
+                  <li><%= link_to "Sign in", signin_path %></li>
+                  <li><%= link_to "Sign up", signup_path %></li>
+                <% end %>
+                  <li><%= link_to "Sign out", signout_path ,method: 'delete'%></li>
+              </ul>
+            </li>
+          </ul>
+
+          
+          <ul class="left">
+            <li><a href="#">Application</a></li>
+            <li><a href="#">Followed</a></li>
+            <li><a href="#">Following</a></li>
+          </ul>
+        </section>
+</nav>
+<br/>
+<br/>

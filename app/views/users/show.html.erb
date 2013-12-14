@@ -1,0 +1,11 @@
+<% provide(:title, current_user.name) %>
+<div class="row">
+  <%= gravatar_for current_user %>
+  <%= current_user.name %>
+</div>
+<div class="row">
+<% if current_user.microposts.any? %>
+	<h3>The total of Mircopost is <strong><%=current_user.microposts.count %></strong></h3>
+		<%=render @microposts %>
+<% end %>
+</div>

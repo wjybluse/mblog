@@ -1,0 +1,7 @@
+<% if signed_in? %>
+	<div class="small-3 columns"><%=render 'shared/user_info' %></div>
+	<div class="small-9 columns"><%=render 'shared/micropost_form' %></div>
+<% else %>
+<p>Welcome to use Mirco Blog App,you can choose <strong><%= link_to "SignUp", signup_path %></strong> or <strong><%= link_to "Sign in", signin_path %></strong></p>
+<% end %> 
+

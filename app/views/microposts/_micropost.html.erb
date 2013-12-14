@@ -1,0 +1,1 @@
+<blockquote><%=micropost.content %><cite><%= current_user.name %>  | <%=time_ago_in_words(micropost.created_at) %> ago | <%= link_to "delete post", micropost ,method: :delete, data: { confirm: "You sure?" }%></cite></blockquote>
