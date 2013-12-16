@@ -1,14 +1,20 @@
 Mblog::Application.routes.draw do
  
+  match 'following' ,to: "relationships#create" ,via: :post
+  match 'unfollow' , to: "relationships#destroy" ,via: :delete
   resources :microposts
-  resources :users
+  resources :users do
+    collection do
+      get :following,:followers
+    end
+  end
   resources :sessions ,only: [:new,:create,:destroy]
   root  to: 'admin#index' 
   get "admin/about"
   get "admin/contact"
-  match "/signup" ,to: "users#new" ,via: "get"
-  match "/signout", to: "sessions#destroy",via: "delete"
-  match "/signin", to: "sessions#new",via:"get"
+  match "/signup" ,to: "users#new" ,via: :get
+  match "/signout", to: "sessions#destroy",via: :delete
+  match "/signin", to: "sessions#new",via: :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

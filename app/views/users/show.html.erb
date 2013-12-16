@@ -1,11 +1,11 @@
-<% provide(:title, current_user.name) %>
+<% provide(:title, @user.name) %>
 <div class="row">
-  <%= gravatar_for current_user %>
-  <%= current_user.name %>
-</div>
-<div class="row">
-<% if current_user.microposts.any? %>
-	<h3>The total of Mircopost is <strong><%=current_user.microposts.count %></strong></h3>
-		<%=render @microposts %>
+<% if @user.microposts.any? %>
+	<div class="small-3 columns"><%=render 'shared/user_info' %></div>
+	<div class="small-9 columns">
+	<% if correct_user?(@user) %>
+	<%=render 'shared/micropost_form' %>
+	<% end %>
+	<%=render 'shared/feed_items' %></div>
 <% end %>
 </div>

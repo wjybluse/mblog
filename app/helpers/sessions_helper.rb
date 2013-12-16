@@ -32,4 +32,7 @@ module SessionsHelper
       redirect_to signin_url, notice: "Please sign in." unless signed_in?
     end
 
+    def following?(user)
+    	current_user.following?(user)
+    end
 end

@@ -1,7 +1,20 @@
 <li>
   <%= gravatar_for user %>
-  <%= link_to user.name, user %>
+  <ul class="inline-list"><li><%= link_to user.name, user %></li>
+  <li>
   <% if current_user.admin? && !correct_user?(user) %>
   	|<%= link_to "delete user", user,method: :delete, data: { confirm: "You sure?" } %>
   <% end %>
+  <% if !correct_user?(user) %>
+  	<% if following?(user) %>
+  		<%= link_to "unfollow", unfollow_path(user) ,method: :delete%>
+  	<% else %>
+  		<%= form_for(current_user.relationships.build(followed_id: user.id),url: following_url) do |f| %>
+			<%= f.text_field :followed_id,value: user.id,type: :hidden %>
+			<%= f.submit class: "link" ,value: "follow"%>	
+  	<% end %>
+  	<% end %>
+  <% end %>
+  </li>
+  </ul>
 </li>

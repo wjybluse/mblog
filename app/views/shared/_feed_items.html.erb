@@ -1,0 +1,7 @@
+<div class="row">
+	<% if @feed_items.any? %>
+	 <ul class="no-bullet">
+		<%= render partial: 'shared/feed_item', collection: @feed_items %>
+	</ul>
+	<% end %>
+</div>

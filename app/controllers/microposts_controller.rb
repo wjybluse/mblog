@@ -1,7 +1,7 @@
 class MicropostsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   def index
-  	@microposts=current_user.microposts
+  	#@microposts=current_user.microposts
   end
 
   def create

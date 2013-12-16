@@ -3,10 +3,5 @@
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
-  <%= f.submit "Post", class: "button [tiny small large] round" %>
+  <%= f.submit "Post", class: "tiny button " %>
 <% end %>
-<div class="row">
-	<% if @feed_items.any? %>
-		<%=render @feed_items %>
-	<% end %>
-</div>

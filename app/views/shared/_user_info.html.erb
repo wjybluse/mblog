@@ -1,14 +1,22 @@
-<a href="<%= user_path(current_user) %>">
-  <%= gravatar_for current_user %>
+<a href="<%= user_path(@user||current_user) %>">
+  <%= gravatar_for @user||current_user %>
 </a>
 <h1>
-  <%= current_user.name %>
+  <%= (@user||current_user).name %>
 </h1>
 <div class="row">
-<div class="small-12 small-centered columns">
-  <%= link_to "view my profile", current_user %>
-</div>
-<div class="small-12 small-centered columns">
-  <%= pluralize(current_user.microposts.count, "micropost") %>
- </div>
+<ul  class="no-bullet">
+<% if correct_user?(@user||current_user) %>
+ <li> <%= link_to "view my profile", (@user||current_user) %></li>
+<% end %>
+<li>
+  Posted <%= pluralize((@user||current_user).microposts.count, "micropost") %>
+ </li>
+ <li>
+ 	Followed&nbsp;&nbsp;&nbsp;<a href="<%=following_users_path %>"><%=(@user||current_user).followed_users.count%></a>
+ </li>
+ <li>
+ Followers&nbsp;&nbsp;&nbsp;<a href="<%=followers_users_path %>"><%=(@user||current_user).followers.count%></a>
+ </li>
+ </ul>
 </div>

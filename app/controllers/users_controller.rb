@@ -24,7 +24,8 @@ class UsersController < ApplicationController
   end
 
   def show 
-    @microposts=@user.microposts
+    @micropost=@user.microposts.build
+    @feed_items=@user.feed
   end
 
   def create
@@ -41,10 +42,16 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
-    if !current_user.admin?
-      current_user=nil
-    end
     redirect_to users_url
+  end
+
+  def following
+    current_user.follow!(User.find(params[:id]))
+    render "index"
+  end
+
+  def followers
+    
   end
 
   private
